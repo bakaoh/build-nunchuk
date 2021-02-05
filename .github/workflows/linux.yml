@@ -58,12 +58,3 @@ jobs:
         run: |
           ./configure --enable-tempstore=yes CFLAGS="-DSQLITE_HAS_CODEC" LDFLAGS="-lcrypto"
           make -j8
-
-      - name: Build libnunchuk
-        working-directory: ${{runner.workspace}}
-        shell: bash
-        run: |
-          cmake -E make_directory ${{runner.workspace}}/build
-          cd build
-          cmake ${{runner.workspace}}/libnunchuk -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT=${{runner.workspace}}/boost_1_73_0 -DUR__DISABLE_TESTS=ON
-          cmake --build . --config Release -j8
