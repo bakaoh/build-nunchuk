@@ -55,13 +55,3 @@ jobs:
         run: |
           msbuild /m bitcoin.sln /p:Platform=x64 /p:Configuration=Release /t:build /m:8
           del /q ${{runner.workspace}}\libnunchuk\contrib\bitcoin\build_msvc\x64\Release
-
-      - name: Build libnunchuk
-        working-directory: ${{runner.workspace}}
-        shell: cmd
-        run: |
-          copy /Y %VCPKG_ROOT%\installed\x64-windows\bin\event* %VCPKG_ROOT%\installed\x64-windows\lib
-          cmake -E make_directory ${{runner.workspace}}\build
-          cd build
-          cmake ${{runner.workspace}}\libnunchuk -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -DUR__DISABLE_TESTS=ON
-          cmake --build . --config Release -j8
