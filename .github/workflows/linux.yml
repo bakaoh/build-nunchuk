@@ -14,7 +14,7 @@ jobs:
       - name: Checkout libnunchuk
         working-directory: ${{runner.workspace}}
         run: |
-          git clone https://github.com/nunchuk-io/libnunchuk --depth 1
+          git clone -b ur2 https://github.com/nunchuk-io/libnunchuk --depth 1
           cd libnunchuk
           git submodule update --depth 1 --init --recursive
         
