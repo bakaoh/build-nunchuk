@@ -16,6 +16,7 @@ jobs:
         run: |
           git clone -b ur2 https://github.com/nunchuk-io/libnunchuk --depth 1
           cd libnunchuk
+          git submodule update --init --recursive contrib/trezor-firmware
           git submodule update --depth 1 --init --recursive
         
       - name: Install packages
